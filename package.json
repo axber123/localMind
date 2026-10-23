@@ -1,0 +1,45 @@
+{
+  "name": "localmind",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LocalMind - 本地优先的个人学习资料管理与 RAG 学习助手",
+  "author": "LocalMind",
+  "license": "MIT",
+  "main": "./dist/server/index.mjs",
+  "scripts": {
+    "build": "npm run typecheck && npm run build:web",
+    "build:web": "vite build --config vite.web.config.ts && vite build --config vite.server.config.ts",
+    "start": "node dist/server/index.mjs",
+    "dev": "npm run build:web && node dist/server/index.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:model": "node scripts/run-with-env.mjs LOCALMIND_RUN_MODEL_TESTS=1 vitest run tests/integration"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.2",
+    "highlight.js": "^11.11.1",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.9.1",
+    "remark-gfm": "^4.0.1",
+    "zod": "^4.1.5",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "5.0.4",
+    "typescript": "5.9.3",
+    "vite": "7.3.7",
+    "vitest": "3.2.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
